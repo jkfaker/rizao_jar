@@ -1,0 +1,44 @@
+package org.example.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.example.pojo.Admin;
+import org.example.pojo.Result;
+import org.example.service.UserService;
+import org.example.utils.JwtUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Slf4j
+@RestController
+@RequestMapping("/manage")
+public class UserController {
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/login")
+    public Result checkLogin(@RequestBody Admin admin) {
+
+        log.info("后台登录： {}", admin);
+        Admin adm = userService.checkLogin(admin);
+        if (adm != null){
+            // 返回JWT令牌
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", adm.getId());
+            claims.put("username", adm.getUsername());
+            claims.put("phone", adm.getPhone());
+
+            String jwt = JwtUtils.generateJwt(claims);
+            return Result.success(jwt);
+        }
+        // 登录失败，返回错误信息
+        return Result.error("用户名或者密码错误！");
+    }
+
+
+}
