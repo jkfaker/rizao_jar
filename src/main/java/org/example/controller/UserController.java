@@ -34,6 +34,7 @@ public class UserController {
             claims.put("phone", adm.getPhone());
 
             String jwt = JwtUtils.generateJwt(claims);
+            log.info(jwt);
             return Result.success(jwt);
         }
         // 登录失败，返回错误信息

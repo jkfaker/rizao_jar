@@ -23,8 +23,8 @@ public class ImgServiceImpl implements ImgService {
     private ImgMapper imgMapper;
 
     // 图片存放路径
-    private static final String PATH = "/var/www/html/uploads/";
-
+    private static final String PATH = "/root/uploads/img/";
+//    private static final String PATH = "C:\\Users\\29443\\Desktop\\uploads\\img\\";
     /**
      * 需要@Transactional
      * 先操作数据库，再上传文件，以便回溯

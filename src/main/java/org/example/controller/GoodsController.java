@@ -62,4 +62,5 @@ public class GoodsController {
         log.info("删除的商品id：{}",id);
         return Result.success();
     }
+
 }
