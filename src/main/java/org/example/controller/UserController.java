@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -39,6 +40,15 @@ public class UserController {
         }
         // 登录失败，返回错误信息
         return Result.error("用户名或者密码错误！");
+    }
+
+    /**
+     * 查询所有管理员id + 电话
+     **/
+    @RequestMapping("/admin")
+    public Result findAllAdmin() {
+        List<Admin> adminList = userService.selectAllAdmin();
+        return Result.success(adminList);
     }
 
 

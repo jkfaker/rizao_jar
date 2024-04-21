@@ -3,6 +3,7 @@ package org.example.controller;
 
 import com.opencsv.exceptions.CsvException;
 import lombok.extern.slf4j.Slf4j;
+import org.example.anno.Log;
 import org.example.pojo.Result;
 import org.example.service.FileImportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class FileImportController {
     @Autowired
     FileImportService fileImportService;
 
+    @Log
     @PostMapping
     public Result importGoodsFile(MultipartFile file) throws IOException, CsvException {
         log.info("文件批量导入商品信息");

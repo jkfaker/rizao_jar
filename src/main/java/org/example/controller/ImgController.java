@@ -2,6 +2,7 @@ package org.example.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.anno.Log;
 import org.example.pojo.GoodsImg;
 import org.example.pojo.Result;
 import org.example.service.ImgService;
@@ -41,6 +42,7 @@ public class ImgController {
      * @return
      * @throws IOException
      */
+    @Log
     @PostMapping("/manage/img")
     public Result add(Integer imgId, Integer goodsId, MultipartFile img) throws IOException {
         imgService.add(imgId, goodsId, img);

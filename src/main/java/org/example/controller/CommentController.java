@@ -20,7 +20,7 @@ public class CommentController {
     /*
     * 通过商品id查找所有评论，当id缺省时显示全部，并且order by 时间
     **/
-    @RequestMapping("/comment")
+    @RequestMapping( value = {"/comment", "/manage/comment"})
     public Result find(Integer goodsId)
     {
         List<Comment> comment =  commentService.find(goodsId);

@@ -2,6 +2,7 @@ package org.example.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.anno.Log;
 import org.example.pojo.Goods;
 import org.example.pojo.Result;
 import org.example.service.GoodsService;
@@ -25,6 +26,7 @@ public class GoodsController {
      * @param goods
      * @return
      */
+    @Log
     @PostMapping("/manage/goods")
     public Result add(@RequestBody Goods goods){
         log.info("添加的商品信息：{}", goods);
@@ -39,7 +41,8 @@ public class GoodsController {
      *  name，detail支持模糊查询
      * @param goods
      * @return
-     */
+     **/
+
     @RequestMapping( value = {"/manage/goods","/goods"})
     public Result find(@ModelAttribute Goods goods)
     {
@@ -56,6 +59,7 @@ public class GoodsController {
      * @param id
      * @return
      */
+    @Log
     @DeleteMapping("manage/goods/{id}")
     public Result delete(@PathVariable Integer id) throws Exception {
         goodsService.delete(id);
@@ -63,4 +67,13 @@ public class GoodsController {
         return Result.success();
     }
 
+    /**
+     *更新商品信息
+     **/
+    @Log
+    @PutMapping("/manage/goods/{id}")
+    public Result updateGoods(@PathVariable("id") Integer id, @RequestBody Goods goods) {
+        goodsService.updateGoods(goods);
+        return Result.success();
+    }
 }

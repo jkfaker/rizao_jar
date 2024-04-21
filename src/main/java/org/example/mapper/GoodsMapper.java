@@ -3,6 +3,7 @@ package org.example.mapper;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 import org.example.pojo.Goods;
 import java.util.List;
 
@@ -17,4 +18,7 @@ public interface GoodsMapper {
 
     @Delete("delete from rizao.goods where id = #{id} ")
     void deleteById(Integer id);
+
+    @Update("UPDATE rizao.goods SET name = #{name}, price = #{price}, detail = #{detail}, producer = #{producer}, classification = #{classification} WHERE id = #{id}")
+    void update(Goods goods);
 }

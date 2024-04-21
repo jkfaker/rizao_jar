@@ -7,6 +7,8 @@ import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,5 +19,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Admin checkLogin(Admin admin) {
         return userMapper.checkLoginByUsernameAndPassword(admin);
+    }
+
+    @Override
+    public List<Admin> selectAllAdmin() {
+        return userMapper.selectAllAdmin();
     }
 }

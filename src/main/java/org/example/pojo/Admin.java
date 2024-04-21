@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Admin {
     private Integer id;
+    private String headSculpture;
     private String username;
     private String password;
     private String phone;
-    private String headSculpture;
 }
