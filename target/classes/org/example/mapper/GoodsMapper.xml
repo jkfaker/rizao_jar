@@ -23,4 +23,43 @@
                 </if>
         </where>
     </select>
+    <select id="sortSelect" resultType="org.example.pojo.GoodsCategory">
+        select * from rizao.goods
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like concat('%' + #{name} + '%')
+            </if>
+            <if test="detail != null" >
+                and detail like concat('%' + #{detail} + '%')
+            </if>
+            <if test="producer != null and producer != ''">
+                and producer = #{producer}
+            </if>
+            <if test="classification != null and classification != ''">
+                and classification = #{classification}
+            </if>
+            <if test="priceMin != 0">
+                and CAST(price AS FLOAT) &gt; #{priceMin}
+            </if>
+            <if test="priceMax != 0">
+                and CAST(price AS FLOAT) &lt; #{priceMax}
+            </if>
+        </where>
+        <if test="sort == 1">
+            order by name
+        </if>
+        <if test="sort == 2">
+            order by name DESC
+        </if>
+        <if test="sort == 3">
+            order by CAST(price AS FLOAT)
+        </if>
+        <if test="sort == 4">
+            order by CAST(price AS FLOAT) DESC
+        </if>
+        LIMIT #{number} OFFSET #{page}
+    </select>
 </mapper>

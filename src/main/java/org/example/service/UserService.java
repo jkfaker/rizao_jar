@@ -1,15 +1,20 @@
 package org.example.service;
 
-
-import lombok.extern.slf4j.Slf4j;
 import org.example.pojo.Admin;
-import org.springframework.stereotype.Service;
+import org.example.pojo.User;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-
 public interface UserService {
-    Admin checkLogin(Admin admin);
+    User checkLogin(User user);
 
-    List<Admin> selectAllAdmin();
+    List<User> selectAllUser();
+
+    void delete(Integer id);
+
+    void addUser(User user);
+
+    Integer registerVerify(User user, HttpServletRequest request);
 }
+

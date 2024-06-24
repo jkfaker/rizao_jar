@@ -4,9 +4,11 @@ package org.example.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.anno.Log;
 import org.example.pojo.Goods;
+import org.example.pojo.GoodsCategory;
 import org.example.pojo.Result;
 import org.example.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.SpringVersion;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,7 +48,6 @@ public class GoodsController {
     @RequestMapping( value = {"/manage/goods","/goods"})
     public Result find(@ModelAttribute Goods goods)
     {
-
         log.info("{}",goods);
         List<Goods> goodsList = goodsService.find(goods);
         log.info("查询到的商品信息：{}", goodsList);
@@ -75,5 +76,18 @@ public class GoodsController {
     public Result updateGoods(@PathVariable("id") Integer id, @RequestBody Goods goods) {
         goodsService.updateGoods(goods);
         return Result.success();
+    }
+
+    /**
+     *  专门为shop.html 商品分类分页查询准备的
+     **/
+
+    @RequestMapping( value = {"/goodsSort"})
+    public Result GoodsSortFind(@ModelAttribute GoodsCategory goodsCategory)
+    {
+        log.info("{}",goodsCategory);
+        List<GoodsCategory> goodsList = goodsService.GoodsSortFind(goodsCategory);
+        log.info("查询到的商品信息：{}", goodsList);
+        return Result.success(goodsList);
     }
 }

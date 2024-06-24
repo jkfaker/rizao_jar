@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.pojo.Goods;
+import org.example.pojo.GoodsCategory;
 import org.example.pojo.Result;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,4 +16,6 @@ public interface GoodsService {
     void delete(Integer id) throws Exception;
 
     void updateGoods(Goods goods);
+
+    List<GoodsCategory> GoodsSortFind(GoodsCategory goodsCategory);
 }

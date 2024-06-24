@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.example.mapper.GoodsMapper;
 import org.example.mapper.ImgMapper;
 import org.example.pojo.Goods;
+import org.example.pojo.GoodsCategory;
 import org.example.service.GoodsService;
 import org.example.service.ImgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,11 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public void updateGoods(Goods goods) {
         goodsMapper.update(goods);
+    }
+
+    @Override
+    public List<GoodsCategory> GoodsSortFind(GoodsCategory goodsCategory) {
+        goodsCategory.setPage(goodsCategory.getNumber() * (goodsCategory.getPage() - 1));
+        return goodsMapper.sortSelect(goodsCategory);
     }
 }

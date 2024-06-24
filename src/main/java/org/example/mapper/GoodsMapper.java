@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
 import org.example.pojo.Goods;
+import org.example.pojo.GoodsCategory;
+
 import java.util.List;
 
 
@@ -19,6 +21,8 @@ public interface GoodsMapper {
     @Delete("delete from rizao.goods where id = #{id} ")
     void deleteById(Integer id);
 
-    @Update("UPDATE rizao.goods SET name = #{name}, price = #{price}, detail = #{detail}, producer = #{producer}, classification = #{classification} WHERE id = #{id}")
+    @Update("UPDATE rizao.goods SET name = #{name}, price = #{price}, detail = #{detail}, producer = #{producer}, classification = #{classification} where id = #{id}")
     void update(Goods goods);
+
+    List<GoodsCategory> sortSelect(GoodsCategory goodsCategory);
 }
